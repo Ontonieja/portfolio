@@ -16,6 +16,7 @@ export default {
         "primary-button": "# 16132B",
         "light-blue": "#8AB7DF",
         "muted-gray": "#16132B",
+        "section-background": "#e7e7e7",
       },
       fontFamily: {
         grotesk: "var(--font-space-grotesk)",
