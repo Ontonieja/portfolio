@@ -15,8 +15,8 @@ export default function SocialLink({ href, Icon, text }: SocialLinkProps) {
       className={cn(
         "text-lg xl:text-2xl uppercase relative transition-all duration-300",
         href.includes("github")
-          ? "hover:text-[#6e40c9] hover:drop-shadow-[0_0_10px_rgba(110,64,201,0.5)]"
-          : "hover:text-blue-500 hover:drop-shadow-[0_0_10px_rgba(10,102,194,0.5)]"
+          ? "hover:text-[#6e40c9] hover:drop-shadow-[0_0_15px_rgba(110,64,201,0.6)]"
+          : "hover:text-blue-500 hover:drop-shadow-[0_0_15px_rgba(10,102,194,0.6)]"
       )}
     >
       <span className="flex gap-2 items-center group">
