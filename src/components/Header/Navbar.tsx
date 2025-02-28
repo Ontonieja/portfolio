@@ -11,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -24,8 +24,8 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "left-0 text-sm w-full py-5 sticky px-6 xl:px-12 sm:mt-3  top-0 z-50 bg-white",
-        scrolled ? "shadow-xl" : ""
+        "left-0 text-sm w-full py-5 sticky px-6 xl:px-12 sm:mt-3 transition-all duration-300 top-0 z-50 bg-white",
+        scrolled ? "bg-white shadow-xl" : "bg-transparent"
       )}
     >
       <nav className="flex justify-between items-center w-full max-w-1920 mx-auto">
