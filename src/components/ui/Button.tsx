@@ -43,7 +43,7 @@ export default function Button({
     primary: `
           bg-muted-gray text-white 
           hover:bg-[#ECC054] hover:text-black
-          transition-all duration-500 
+          transition-all duration-300
           hover:scale-[102%]
           hover:shadow-[0_0_15px_rgba(236,192,84,0.8)]
         `,
