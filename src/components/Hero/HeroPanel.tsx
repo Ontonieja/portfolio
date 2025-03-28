@@ -1,10 +1,7 @@
-import Link from "next/link";
+import SocialLinks from "../SocialLinks";
 import BlurredShape from "../ui/BlurredShape";
 import HeroImageWithLabel from "./HeroImageWithLabel";
 import HeroText from "./HeroText";
-import { FaGithubAlt } from "react-icons/fa6";
-import SocialLink from "../ui/SocialLink";
-import { IoLogoLinkedin } from "react-icons/io";
 
 export default function HeroPanel() {
   return (
@@ -16,16 +13,7 @@ export default function HeroPanel() {
         <HeroText />
       </div>
       <div className="ml-4 mb-4 xl:ml-8 xl:mb-8 flex gap-4 xl:gap-8 absolute bottom-0 left-0">
-        <SocialLink
-          href="https://github.com/MaksymilianRusnak"
-          Icon={FaGithubAlt}
-          text="Github"
-        />
-        <SocialLink
-          href="https://www.linkedin.com/in/maksymilian-rusnak/"
-          Icon={IoLogoLinkedin}
-          text="Linkedin"
-        />
+        <SocialLinks />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function AboutPanel() {
     <div className="bg-section-background w-full p-4 pb-8 xl:px-8 md:pb-12 xl:pb-16 rounded-2xl xl:rounded-[22px] relative overflow-hidden">
       <BlurredShape className="-bottom-14 -right-14 w-[220px] h-[140px] md:h[200px]  md:w-[240px] lg:w-[300px] xl:w-[340px]   bg-[#86a4ffc4] -rotate-[30deg]" />
       <div className="flex flex-col md:flex-row xl:space-x-4 space-y-6 items-start z-20">
-        <div className="w-full md:w-3/4">
+        <div className="w-full md:w-3/4 2xl:w-[70%]">
           <SectionHeading title="About me" />
           <AboutText />
         </div>
