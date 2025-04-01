@@ -9,7 +9,7 @@ export default function AboutPanel() {
       <BlurredShape className="-bottom-14 -right-14 w-[220px] h-[140px] md:h[200px]  md:w-[240px] lg:w-[300px] xl:w-[340px]   bg-[#86a4ffc4] -rotate-[30deg]" />
       <div className="flex flex-col md:flex-row xl:space-x-4 space-y-6 items-start z-20">
         <div className="w-full md:w-3/4 2xl:w-[70%]">
-          <SectionHeading title="About me" />
+          <SectionHeading>About me</SectionHeading>
           <AboutText />
         </div>
         <div className="md:w-1/4 h-full flex items-center  max-md:mx-auto justify-center z-20">
