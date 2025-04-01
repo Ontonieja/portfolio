@@ -1,11 +1,20 @@
 import { cn } from "@/lib/utils";
 
-export default function SectionHeading({
-  title,
-  className,
-}: {
-  title: string;
+interface SectionHeadingProps {
+  children: React.ReactNode;
   className?: string;
-}) {
-  return <h2 className={cn("text-3xl font-bold ", className)}>{title}</h2>;
+  size?: "default" | "large";
+}
+
+export default function SectionHeading({
+  children,
+  className,
+  size = "default",
+}: SectionHeadingProps) {
+  const sizeClass = size === "default" ? "text-3xl" : "text-4xl lg:text-5xl";
+  return (
+    <h2 className={cn("text-3xl font-bold", className, sizeClass)}>
+      {children}
+    </h2>
+  );
 }

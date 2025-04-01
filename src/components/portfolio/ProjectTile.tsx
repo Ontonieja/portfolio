@@ -40,6 +40,17 @@ export default function ProjectTile({
     });
   };
 
+  const tileVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3,
+      },
+    },
+  };
+
   return (
     <motion.div
       ref={tileRef}
@@ -51,9 +62,10 @@ export default function ProjectTile({
           : "md:w-[calc(45%-12px)] lg:w-[calc(45%-24px)]"
       )}
       onClick={handleClick}
-      initial={{ opacity: 1 }}
       whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.2 }}
+      variants={tileVariants}
+      viewport={{ once: true }}
     >
       <div className="flex justify-between items-center relative z-10">
         <div>

@@ -1,4 +1,5 @@
 import AboutPanel from "@/components/About/AboutPanel";
+import ExperiencePanel from "@/components/experience/ExperiencePanel";
 import Navbar from "@/components/header/Navbar";
 import HeroPanel from "@/components/Hero/HeroPanel";
 import PageTransition from "@/components/PageTransition";
@@ -10,9 +11,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col space-y-6 md:space-y-8 lg:space-y-12 px-4 xl:px-12">
+      <main className="flex flex-col px-4 xl:px-12">
         <PageTransition>
-          <SectionWrapper id="/" className="md:mt-2">
+          <SectionWrapper id="/" className="md:mt-2 !pt-0">
             <HeroPanel />
           </SectionWrapper>
           <SectionWrapper id="about">
@@ -22,8 +23,12 @@ export default function Home() {
           <SectionWrapper id="projects">
             <PortfolioPanel />
           </SectionWrapper>
-          <SectionWrapper id="techStack">
+          <SectionWrapper id="tech-stack" spacing="large">
             <TechStackPanel />
+          </SectionWrapper>
+
+          <SectionWrapper id="experience" spacing="extralarge">
+            <ExperiencePanel />
           </SectionWrapper>
         </PageTransition>
       </main>

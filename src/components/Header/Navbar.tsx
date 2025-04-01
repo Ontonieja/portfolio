@@ -41,7 +41,7 @@ export default function Navbar({
     >
       <nav
         className={cn(
-          "flex justify-between items-center w-full  mx-auto sm:pt-3",
+          "flex justify-between items-center w-full  mx-auto",
           isProjectPage ? "max-w-[1512px]" : "max-w-[1920px]"
         )}
       >
