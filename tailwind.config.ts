@@ -9,6 +9,27 @@ export default {
   ],
   theme: {
     extend: {
+      keyframes: {
+        gradient: {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+      },
+      backgroundImage: {
+        "gradient-to-r": "linear-gradient(to right, var(--tw-gradient-stops))",
+      },
+      backgroundSize: {
+        "300%": "300%",
+      },
+      animation: {
+        gradient: "gradient 6s ease infinite",
+      },
       colors: {
         "background": "var(--background)",
         "foreground": "var(--foreground)",

@@ -7,6 +7,12 @@
     @apply relative;
   }
 
+  .bg-gradient-to-r {
+    --tw-gradient-stops: theme("colors.purple.500"), theme("colors.pink.500"),
+      theme("colors.blue.500"), theme("colors.purple.500");
+    background-size: 300% 300%;
+  }
+
   .underline-animation::after {
     content: "";
     @apply absolute bottom-3 lg:bottom-6 2xl:bottom-10 left-0 w-full h-1 bg-white hover:scale-x-100 scale-x-0 transition-transform duration-300 origin-bottom-right hover:origin-bottom-left ease-in-out;
