@@ -1,5 +1,7 @@
 import AboutPanel from "@/components/About/AboutPanel";
+import ContactPanel from "@/components/contact/ContactPanel";
 import ExperiencePanel from "@/components/experience/ExperiencePanel";
+import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/header/Navbar";
 import HeroPanel from "@/components/Hero/HeroPanel";
 import PageTransition from "@/components/PageTransition";
@@ -30,8 +32,14 @@ export default function Home() {
           <SectionWrapper id="experience" spacing="extralarge">
             <ExperiencePanel />
           </SectionWrapper>
+
+          <SectionWrapper id="contact" spacing="extralarge">
+            <ContactPanel />
+          </SectionWrapper>
         </PageTransition>
       </main>
+
+      <Footer />
     </>
   );
 }

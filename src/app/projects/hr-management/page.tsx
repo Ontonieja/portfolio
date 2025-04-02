@@ -18,8 +18,8 @@ export default function DragonProjectPage() {
           "Prisma & PostgreSQL – Ensuring robust and secure data management",
         ]}
         mobileImage={"/hr_mobile.png"}
-        websiteLink="https://github.com/yourrepo/hr-management-app"
-        githubLink="https://github.com/yourrepo/hr-management-app"
+        websiteLink="https://github.com/Ontonieja/hr-management-api"
+        githubLink="https://github.com/Ontonieja/hr-management-api"
         backgroundColor="bg-[#6f52f4]"
       />
     </ProjectLayout>
