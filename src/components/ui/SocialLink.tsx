@@ -5,7 +5,7 @@ import { IconType } from "react-icons";
 interface SocialLinkProps {
   href: string;
   Icon: IconType;
-  text: string;
+  text?: string;
   isProjectPage?: boolean;
 }
 export default function SocialLink({
