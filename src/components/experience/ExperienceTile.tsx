@@ -19,7 +19,7 @@ export default function ExperienceTile({
   logo,
 }: ExperienceTileProps) {
   return (
-    <div className="flex flex-col md:flex-row md:gap-10 mb-10 md:mb-20 lg:mb-30 2xl:mb-40 text-sm relative">
+    <div className="flex flex-col md:flex-row md:gap-10 text-sm relative">
       <div className="md:w-[244px] lg:w-[284px] relative">
         <div className="h-full">
           <div className="sticky top-40 flex flex-col space-y-2">
