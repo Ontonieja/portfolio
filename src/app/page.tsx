@@ -3,7 +3,7 @@ import ContactPanel from "@/components/contact/ContactPanel";
 import ExperiencePanel from "@/components/experience/ExperiencePanel";
 import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/header/Navbar";
-import HeroPanel from "@/components/Hero/HeroPanel";
+import HeroPanel from "@/components/hero/HeroPanel";
 import PageTransition from "@/components/PageTransition";
 import PortfolioPanel from "@/components/portfolio/PortfolioPanel";
 import SectionWrapper from "@/components/SectionWrappers";
