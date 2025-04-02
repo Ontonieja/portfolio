@@ -30,3 +30,13 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
 }
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+::selection {
+  background-color: #ffcc00;
+  color: black;
+}

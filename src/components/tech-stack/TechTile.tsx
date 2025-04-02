@@ -24,7 +24,7 @@ export default function TechTile({ icon, title }: TechTileProps) {
     <motion.div
       variants={tileVariants}
       whileHover={{ rotate: 5 }}
-      className="flex gap-2 justify-center items-center group bg-section-background/[0.25] px-4 py-1.5 rounded-lg font-medium border border-light-gray/[0.1]"
+      className="flex gap-2 justify-center items-center group bg-section-background/[0.25] px-4 py-1.5 rounded-lg font-medium border border-light-gray/[0.1] select-none"
     >
       <StackIcon
         name={icon}
