@@ -9,8 +9,11 @@ export default function ContactForm() {
   const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsLoading(true);
+
     try {
       const formData = new FormData(event.currentTarget);
       const succes = await sendEmail(formData);
@@ -22,6 +25,8 @@ export default function ContactForm() {
       console.log(e);
       setIsSuccess(false);
       setIsError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -62,8 +67,9 @@ export default function ContactForm() {
           type="submit"
           className="w-full my-4 hover:shadow-xl"
           variant="primary"
+          disabled={isLoading}
         >
-          Wyślij
+          {isLoading ? "Sending..." : "Send"}
         </Button>
         <div>{isSuccess && <p>The message was successfully sent!</p>}</div>
         {isError && <p>Something went wrong, please try again.</p>}
