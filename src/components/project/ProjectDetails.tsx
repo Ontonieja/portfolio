@@ -28,7 +28,7 @@ export default function ProjectDetails({
   backgroundColor,
 }: ProjectDetailsProps) {
   return (
-    <main className={cn("px-6 xl:px-12 overflow-hidden", backgroundColor)}>
+    <main className={cn("px-4 xl:px-12 overflow-hidden", backgroundColor)}>
       <SectionWrapper className="text-white flex flex-col min-h-screen overflow-hidden max-w-[1512px] mx-auto">
         <PortfolioBackHeading
           projectName={name}

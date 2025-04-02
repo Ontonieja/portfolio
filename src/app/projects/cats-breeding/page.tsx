@@ -19,8 +19,8 @@ export default function DragonProjectPage() {
           "SEO Optimization – Enhances discoverability in search engines",
         ]}
         mobileImage={"/cats_mobile.png"}
-        websiteLink="https://dragonparaboxing.pl/"
-        githubLink="https://dragonparaboxing.pl/"
+        websiteLink="https://samoszczescie.pl/"
+        githubLink="https://github.com/Ontonieja/cats-breeding"
         backgroundColor="bg-[#8AB7DF]"
       />
     </ProjectLayout>

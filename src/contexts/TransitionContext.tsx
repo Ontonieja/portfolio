@@ -8,7 +8,6 @@ import React, {
   ReactNode,
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface TransitionContextType {
@@ -44,14 +43,9 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const [options, setOptions] = useState<TransitionOptions | null>(null);
   const [showContent, setShowContent] = useState(false);
 
-  const pathName = usePathname();
-
-  // Check for saved transition data immediately on mount
   useEffect(() => {
-    // Set content to hidden immediately
     setShowContent(false);
 
-    // This function will check for transition data and handle it
     const handleTransitionData = () => {
       if (typeof window !== "undefined") {
         const savedTransition = sessionStorage.getItem("pageTransition");
@@ -63,27 +57,25 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
           setTransitionState("enter");
           setIsTransitioning(true);
 
-          // Remove the saved data so we don't reuse it
           sessionStorage.removeItem("pageTransition");
 
-          // Wait for transition to complete before showing content
-          setTimeout(() => {
-            setShowContent(true);
+          setTimeout(
+            () => {
+              setShowContent(true);
 
-            // Then complete the transition after content is shown
-            setTimeout(() => {
-              setIsTransitioning(false);
-              setTransitionState("none");
-            }, 300);
-          }, (transitionData.duration || 0.8) * 1000);
+              setTimeout(() => {
+                setIsTransitioning(false);
+                setTransitionState("none");
+              }, 300);
+            },
+            (transitionData.duration || 0.8) * 1000
+          );
         } else {
-          // No transition, show content immediately
           setShowContent(true);
         }
       }
     };
 
-    // Execute with minimal delay to ensure DOM is ready
     setTimeout(handleTransitionData, 10);
   }, []);
 
@@ -95,15 +87,12 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
     duration = 0.8,
     targetPath,
   }: TransitionOptions) => {
-    // Set transition options and state
     setOptions({ x, y, color, duration, backgroundColor, targetPath });
     setTransitionState("exit");
     setIsTransitioning(true);
 
-    // Hide content immediately
     setShowContent(false);
 
-    // Save transition data for the next page
     if (typeof window !== "undefined") {
       sessionStorage.setItem(
         "pageTransition",

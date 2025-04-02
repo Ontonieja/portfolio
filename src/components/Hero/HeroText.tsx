@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Button from "../ui/Button";
 
 export default function HeroText() {
@@ -11,7 +12,7 @@ export default function HeroText() {
         applications. 👨🏼‍💻
       </p>
       <Button variant="primary" size="large" className="mt-6 md:mt-12">
-        Contact me
+        <Link href="#contact">Contact me</Link>
       </Button>
     </div>
   );
