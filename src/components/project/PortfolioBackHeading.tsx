@@ -21,7 +21,7 @@ export default function PortfolioBackHeading({
       y: e.clientY,
       color: "#ECC054",
       duration: 0.8,
-      targetPath: "/#portfolio",
+      targetPath: "/#projects",
       backgroundColor: transitionBackgroundColor,
     });
   };
