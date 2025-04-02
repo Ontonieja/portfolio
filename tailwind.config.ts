@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      dropShadow: {
+        "gradient-glow": "0 0 25px rgba(236,72,201,0.99)",
+      },
       keyframes: {
         gradient: {
           "0%, 100%": {

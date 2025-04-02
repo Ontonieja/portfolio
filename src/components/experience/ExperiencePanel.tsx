@@ -46,17 +46,14 @@ export default function ExperiencePanel() {
             <span>Experience That Fuels</span>{" "}
             <AdvancedGradientText
               text="My Growth"
-              className="drop-shadow-[0_0_25px_rgba(236,72,201,153.0.4)]"
+              className="drop-shadow-gradient-glow"
             />
           </AnimatedSectionHeading>
         </div>
       </div>
 
-      <div
-        ref={sectionRef}
-        className="max-w-[1040px] relative mx-auto pt-20 flex flex-col gap-y-10  md:gap-y-20 lg:gap-y-30 2xl:gap-y-40"
-      >
-        <div className="absolute left-3 top-0 h-full w-0.5">
+      <div ref={sectionRef} className="max-w-[1040px] relative mx-auto pt-20">
+        <div className="absolute left-3 md:left-4 top-0 h-full w-0.5">
           <div className="absolute top-5 h-full w-full"></div>
 
           <div
@@ -69,9 +66,12 @@ export default function ExperiencePanel() {
         </div>
 
         {experiences.map(
-          ({ date, jobTitle, location, companyName, description, logo }) => (
+          (
+            { date, jobTitle, location, companyName, description, logo },
+            index
+          ) => (
             <ExperienceTile
-              key={companyName}
+              key={index}
               date={date}
               jobTitle={jobTitle}
               location={location}
