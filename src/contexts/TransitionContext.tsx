@@ -48,9 +48,12 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
       if (typeof window !== "undefined") {
         sessionStorage.removeItem("pageTransition");
       }
+
       setShowContent(true);
+
       setIsTransitioning(false);
       setTransitionState("none");
+      setOptions(null);
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -59,7 +62,6 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
       window.removeEventListener("popstate", handlePopState);
     };
   }, []);
-
   useEffect(() => {
     setShowContent(false);
 
