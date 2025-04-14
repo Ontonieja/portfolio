@@ -44,6 +44,23 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
+    const handlePopState = () => {
+      if (typeof window !== "undefined") {
+        sessionStorage.removeItem("pageTransition");
+      }
+      setShowContent(true);
+      setIsTransitioning(false);
+      setTransitionState("none");
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, []);
+
+  useEffect(() => {
     setShowContent(false);
 
     const handleTransitionData = () => {
@@ -72,6 +89,8 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
           );
         } else {
           setShowContent(true);
+          setIsTransitioning(false);
+          setTransitionState("none");
         }
       }
     };
