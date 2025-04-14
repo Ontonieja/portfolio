@@ -45,29 +45,28 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const handlePopState = () => {
-      if (typeof window !== "undefined") {
-        sessionStorage.removeItem("pageTransition");
-      }
+      console.log("[POPSTATE] - resetting transition");
 
       setShowContent(true);
-
       setIsTransitioning(false);
       setTransitionState("none");
+
       setOptions({
         x: 0,
         y: 0,
         color: "",
         duration: 0,
         targetPath: "",
-        backgroundColor: "",
+        backgroundColor: "", // ważne
       });
+
+      if (typeof window !== "undefined") {
+        sessionStorage.removeItem("pageTransition");
+      }
     };
 
     window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
+    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
   useEffect(() => {
     setShowContent(false);
@@ -166,7 +165,7 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
       </div>
 
       <AnimatePresence>
-        {isTransitioning && options && transitionState !== "none" && (
+        {transitionState !== "none" && options?.x !== undefined && (
           <motion.div
             className={cn(
               "fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]",
