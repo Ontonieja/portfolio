@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
 
 interface TransitionContextType {
   startTransition: (options: TransitionOptions) => void;
@@ -43,10 +44,11 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
   const [options, setOptions] = useState<TransitionOptions | null>(null);
   const [showContent, setShowContent] = useState(false);
 
+  const router = useRouter();
+  const pathName = usePathname();
+
   useEffect(() => {
     const handlePopState = () => {
-      console.log("[POPSTATE] - resetting transition");
-
       setShowContent(true);
       setIsTransitioning(false);
       setTransitionState("none");
@@ -57,7 +59,7 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
         color: "",
         duration: 0,
         targetPath: "",
-        backgroundColor: "", // ważne
+        backgroundColor: "",
       });
 
       if (typeof window !== "undefined") {
@@ -68,43 +70,35 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
+
   useEffect(() => {
     setShowContent(false);
 
-    const handleTransitionData = () => {
-      if (typeof window !== "undefined") {
-        const savedTransition = sessionStorage.getItem("pageTransition");
+    const savedTransition = sessionStorage.getItem("pageTransition");
 
-        if (savedTransition) {
-          const transitionData = JSON.parse(savedTransition);
+    if (savedTransition) {
+      const transitionData = JSON.parse(savedTransition);
 
-          setOptions(transitionData);
-          setTransitionState("enter");
-          setIsTransitioning(true);
+      setOptions(transitionData);
+      setTransitionState("enter");
+      setIsTransitioning(true);
+      sessionStorage.removeItem("pageTransition");
 
-          sessionStorage.removeItem("pageTransition");
+      const durationMs = (transitionData.duration || 0.8) * 1000;
 
-          setTimeout(
-            () => {
-              setShowContent(true);
+      const timeout = setTimeout(() => {
+        setShowContent(true);
+        setIsTransitioning(false);
+        setTransitionState("none");
+      }, durationMs);
 
-              setTimeout(() => {
-                setIsTransitioning(false);
-                setTransitionState("none");
-              }, 300);
-            },
-            (transitionData.duration || 0.8) * 1000
-          );
-        } else {
-          setShowContent(true);
-          setIsTransitioning(false);
-          setTransitionState("none");
-        }
-      }
-    };
-
-    setTimeout(handleTransitionData, 10);
-  }, []);
+      return () => clearTimeout(timeout);
+    } else {
+      setShowContent(true);
+      setIsTransitioning(false);
+      setTransitionState("none");
+    }
+  }, [pathName]);
 
   const startTransition = ({
     x,
@@ -133,9 +127,8 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
       );
     }
 
-    // Navigate after animation completes
     setTimeout(() => {
-      window.location.href = targetPath;
+      router.push(targetPath);
     }, duration * 1000);
   };
 
@@ -165,69 +158,69 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
       </div>
 
       <AnimatePresence>
-        {transitionState !== "none" && options?.x !== undefined && (
-          <motion.div
-            className={cn(
-              "fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]",
-              options.backgroundColor
-            )}
-            style={{ position: "fixed" }}
-          >
-            {transitionState === "exit" ? (
-              <motion.div
-                className="absolute rounded-full"
-                initial={{
-                  width: "4px",
-                  height: "4px",
-                  left: options.x - 2,
-                  top: options.y - 2,
-                  backgroundColor: options.color,
-                }}
-                animate={{
-                  width: Math.max(window.innerWidth, window.innerHeight) * 3,
-                  height: Math.max(window.innerWidth, window.innerHeight) * 3,
-                  left:
-                    options.x -
-                    (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
-                  top:
-                    options.y -
-                    (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
-                }}
-                transition={{
-                  duration: options.duration,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-              />
-            ) : (
-              // Enter animation - circle shrinks
-              <motion.div
-                className="absolute rounded-full"
-                initial={{
-                  width: Math.max(window.innerWidth, window.innerHeight) * 3,
-                  height: Math.max(window.innerWidth, window.innerHeight) * 3,
-                  left:
-                    options.x -
-                    (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
-                  top:
-                    options.y -
-                    (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
-                  backgroundColor: options.color,
-                }}
-                animate={{
-                  width: "4px",
-                  height: "4px",
-                  left: options.x - 2,
-                  top: options.y - 2,
-                  opacity: 0,
-                }}
-                transition={{
-                  duration: options.duration,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-              />
-            )}
-          </motion.div>
-        )}
+        {(transitionState === "exit" || transitionState === "enter") &&
+          options?.targetPath && (
+            <motion.div
+              className={cn(
+                "fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]",
+                options.backgroundColor
+              )}
+              style={{ position: "fixed" }}
+            >
+              {transitionState === "exit" ? (
+                <motion.div
+                  className="absolute rounded-full"
+                  initial={{
+                    width: "4px",
+                    height: "4px",
+                    left: options.x - 2,
+                    top: options.y - 2,
+                    backgroundColor: options.color,
+                  }}
+                  animate={{
+                    width: Math.max(window.innerWidth, window.innerHeight) * 3,
+                    height: Math.max(window.innerWidth, window.innerHeight) * 3,
+                    left:
+                      options.x -
+                      (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
+                    top:
+                      options.y -
+                      (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
+                  }}
+                  transition={{
+                    duration: options.duration,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                />
+              ) : (
+                <motion.div
+                  className="absolute rounded-full"
+                  initial={{
+                    width: Math.max(window.innerWidth, window.innerHeight) * 3,
+                    height: Math.max(window.innerWidth, window.innerHeight) * 3,
+                    left:
+                      options.x -
+                      (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
+                    top:
+                      options.y -
+                      (Math.max(window.innerWidth, window.innerHeight) * 3) / 2,
+                    backgroundColor: options.color,
+                  }}
+                  animate={{
+                    width: "4px",
+                    height: "4px",
+                    left: options.x - 2,
+                    top: options.y - 2,
+                    opacity: 0,
+                  }}
+                  transition={{
+                    duration: options.duration,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                />
+              )}
+            </motion.div>
+          )}
       </AnimatePresence>
     </TransitionContext.Provider>
   );
