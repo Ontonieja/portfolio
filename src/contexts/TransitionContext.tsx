@@ -53,7 +53,14 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
 
       setIsTransitioning(false);
       setTransitionState("none");
-      setOptions(null);
+      setOptions({
+        x: 0,
+        y: 0,
+        color: "",
+        duration: 0,
+        targetPath: "",
+        backgroundColor: "",
+      });
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -159,7 +166,7 @@ export const TransitionProvider = ({ children }: { children: ReactNode }) => {
       </div>
 
       <AnimatePresence>
-        {isTransitioning && options && (
+        {isTransitioning && options && transitionState !== "none" && (
           <motion.div
             className={cn(
               "fixed top-0 left-0 w-full h-full pointer-events-none z-[9999]",
