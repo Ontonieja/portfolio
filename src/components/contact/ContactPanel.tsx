@@ -1,14 +1,14 @@
 import ContactForm from "./ContactForm";
 import AdvancedGradientText from "../ui/AnimatedGradientText";
 import Image from "next/image";
-import { MdOutlineMailOutline } from "react-icons/md";
+import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
+
 import ContactTile from "../ui/ContactTile";
 
 export default function ContactPanel() {
   return (
     <div className="bg-section-background rounded-2xl w-full py-4 md:py-12 px-4 h-full">
       <div className="max-w-[1040px] mx-auto flex flex-col md:flex-row gap-4 lg:gap-10 flex-1 w-full h-full">
-        {/* Mobile: Image at the top */}
         <div className="md:hidden bg-white h-80 shadow-lg rounded-2xl relative overflow-hidden w-full">
           <Image
             src="/contact_photo.png"
@@ -48,7 +48,7 @@ export default function ContactPanel() {
               href="maksymilianr11@gmail.com"
             />
             <ContactTile
-              Icon={MdOutlineMailOutline}
+              Icon={MdOutlinePhone}
               title="Phone"
               href="+48 530 898 033"
             />
@@ -62,7 +62,7 @@ export default function ContactPanel() {
             href="maksymilianr11@gmail.com"
           />
           <ContactTile
-            Icon={MdOutlineMailOutline}
+            Icon={MdOutlinePhone}
             title="Phone"
             href="+48 530 898 033"
           />
