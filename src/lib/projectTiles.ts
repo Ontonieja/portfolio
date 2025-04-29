@@ -27,7 +27,8 @@ const projectTiles: ProjectTile[] = [
   },
   {
     heading: "HR management app",
-    description: "Website with CMS for cats breeding company",
+    description:
+      "Web application for managing human resources and employee information",
     link: "/projects/hr-management",
     className: "bg-[#6f52f4]",
     transitionColor: "#6f52f4",
@@ -35,7 +36,8 @@ const projectTiles: ProjectTile[] = [
   },
   {
     heading: "Chat App",
-    description: "Website for Cracow paraboxing organization",
+    description:
+      "Chat application with contact management and messaging features",
     link: "/projects/chat-app",
     className: "bg-[#0372c1]",
     transitionColor: "#0372c1",
